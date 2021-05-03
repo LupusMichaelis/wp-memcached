@@ -16,6 +16,11 @@ if ( ! defined( 'WP_CACHE_KEY_SALT' ) ) {
 	define( 'WP_CACHE_KEY_SALT', '' );
 }
 
+if ( ! class_exists( 'Memcache' ) ) {
+	error_log('Cache deactivated as Memcache class can\'t be found');
+	return;
+}
+
 function wp_cache_add( $key, $data, $group = '', $expire = 0 ) {
 	global $wp_object_cache;
 
